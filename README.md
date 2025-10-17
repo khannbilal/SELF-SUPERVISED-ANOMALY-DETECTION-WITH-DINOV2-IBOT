@@ -90,6 +90,6 @@ The DINOv2/iBOTbased selfsupervised anomaly detection model effectively eliminat
 2. Zhou, D. et al. (2022). iBOT: Image BERT PreTraining with Online Tokenizer. CVPR.
 3. Bergmann, P. et al. (2019). MVTec AD — A Comprehensive RealWorld Dataset for Unsupervised Anomaly Detection.
 
-Closest Research Paper:
+# Closest Research Paper:
 > Caron, M. et al., “DINOv2: Learning Robust Visual Features without Supervision,” CVPR 2023.
 > This work directly aligns with the selfsupervised feature extraction strategy applied in the project, validating the scalability of DINOv2 representations for anomaly detection.
