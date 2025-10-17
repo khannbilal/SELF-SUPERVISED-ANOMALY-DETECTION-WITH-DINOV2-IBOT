@@ -40,7 +40,34 @@ Dataset: MVTec AD (Industrial Defect Detection Benchmark)
  Metrics: AUROC, AUPR, F1score, Precision.
  Baselines: PaDiM, PatchCore, CutPaste (supervised/weakly supervised).
 
-# Results
+# Architecture (Textual Diagram)
+
+       ┌──────────────────────────────┐
+       │     Unlabeled Normal Data     │
+       └─────────────┬────────────────┘
+                     │
+          ┌──────────▼──────────┐
+          │   DINOv2 / iBOT     │
+          │ SelfSupervised ViT │
+          └──────────┬──────────┘
+                     │
+          ┌──────────▼──────────┐
+          │   Feature Embedding  │
+          └──────────┬──────────┘
+                     │
+          ┌──────────▼──────────┐
+          │ Clustering + PCA     │
+          └──────────┬──────────┘
+                     │
+          ┌──────────▼──────────┐
+          │ Anomaly Scoring Map  │
+          └──────────┬──────────┘
+                     │
+          ┌──────────▼──────────┐
+          │   Defect Detection   │
+          └──────────────────────┘
+
+ # Results
 | Metric            | Proposed (DINOv2/iBOT) | Baseline (PatchCore) |
 | Precision         | 95.1%              | 91.3%            	    |
 | AUROC             | 0.984              | 0.955              	    |
@@ -49,32 +76,6 @@ Dataset: MVTec AD (Industrial Defect Detection Benchmark)
 
 # Key Insight:
 Selfsupervised ViT embeddings captured highlevel structural and textural cues, enabling robust generalization to unseen defects while drastically minimizing human supervision.
-
-# Architecture (Textual Diagram)
-┌──────────────────────────────┐
-│     Unlabeled Normal Data     │
-└─────────────┬────────────────┘
-              │
-   ┌──────────▼──────────┐
-   │   DINOv2 / iBOT     │
-   │ SelfSupervised ViT │
-   └──────────┬──────────┘
-              │
-   ┌──────────▼──────────┐
-   │   Feature Embedding  │
-   └──────────┬──────────┘
-              │
-   ┌──────────▼──────────┐
-   │ Clustering + PCA     │
-   └──────────┬──────────┘
-              │
-   ┌──────────▼──────────┐
-   │ Anomaly Scoring Map  │
-   └──────────┬──────────┘
-              │
-   ┌──────────▼──────────┐
-   │   Defect Detection   │
-   └──────────────────────┘
 
 # Conclusion
 The DINOv2/iBOTbased selfsupervised anomaly detection model effectively eliminates dependence on labeled data while maintaining high detection fidelity. Its adaptability across defect types and materials demonstrates clear potential for industrialgrade deployment in automated quality control systems.
